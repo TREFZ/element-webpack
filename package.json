@@ -4,12 +4,15 @@
   "description": "Webpack wrapper for use in Element",
   "main": "index.js",
   "scripts": {
-    "build:client": "./node_modules/.bin/webpack --define process.env.NODE_ENV=\"'development'\"",
-    "build:client:prod": "./node_modules/.bin/webpack -p",
+    "element-webpack:client": "./node_modules/.bin/webpack --define process.env.NODE_ENV=\"'development'\"",
+    "element-webpack:client:prod": "./node_modules/.bin/webpack -p",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Meredith Corporation",
   "license": "UNLICENSED",
+  "bin": {
+    "element-webpack-cli": "./cli.js"
+  },
   "dependencies": {
     "eslint": "^5.6.0",
     "eslint-config-airbnb": "^17.1.0",
