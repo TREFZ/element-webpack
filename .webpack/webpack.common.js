@@ -6,8 +6,14 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
+  stats: {
+    colors: true,
+  },
+  cache: true,
   entry: {
     main: [path.join(__dirname, '..', '..', 'element', 'public/src/main.js')],
+    style: [path.join(__dirname, '..', '..', 'element', 'public/scss/main.scss')],
+    styleguide: [path.join(__dirname, '..', '..', 'element', 'public/scss/styleguide.scss')],
   },
   output: {
     path: path.resolve('./public/dist/'),
