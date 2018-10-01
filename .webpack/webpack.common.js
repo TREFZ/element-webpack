@@ -5,28 +5,30 @@ const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const autoprefixer = require('autoprefixer');
 
+const cwd = process.cwd();
+
 module.exports = {
   stats: {
     colors: true,
   },
   cache: true,
   entry: {
-    main: [path.join(__dirname, '..', '..', 'element', 'public/src/main.js')],
-    style: [path.join(__dirname, '..', '..', 'element', 'public/scss/main.scss')],
-    styleguide: [path.join(__dirname, '..', '..', 'element', 'public/scss/styleguide.scss')],
+    main: path.join(cwd, 'public/src/main.js'),
+    style: path.join(cwd, 'public/scss/main.scss'),
+    styleguide: path.join(cwd, 'public/scss/styleguide.scss'),
   },
   output: {
-    path: path.resolve('./public/dist/'),
+    path: path.join(cwd, 'public/dist/'),
     publicPath: '/dist/',
     filename: '[name].js',
     chunkFilename: '[name]-[id].js',
   },
   resolve: {
     alias: {
-      public: path.join(__dirname, '..', '..', 'element', 'public'),
-      shared: path.join(__dirname, '..', '..', 'element', 'shared'),
-      brandPublic: path.join(__dirname, '..', '..', 'element', 'public'),
-      brandShared: path.join(__dirname, '..', '..', 'element', 'shared'),
+      public: path.join(cwd, 'public'),
+      shared: path.join(cwd, 'shared'),
+      brandPublic: path.join(cwd, 'public'),
+      brandShared: path.join(cwd, 'shared'),
       handlebars: 'handlebars/runtime.js',
     },
     extensions: ['.js', '.coffee'],
@@ -66,7 +68,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|svg)$/,
-        include: path.join(__dirname, '..', '..', 'element', 'public'),
+        include: path.join(cwd, 'public'),
         use: 'url-loader?limit=30000&name=images/[name].[ext]',
       },
       {
@@ -85,8 +87,8 @@ module.exports = {
         query: {
           exclude: 'node_modules',
           partialResolver: (partial, callback) => {
-            const partialPath = `${path.join(__dirname, '..', '..', 'element', 'shared', 'partials/')}${partial}.hbs`;
-            const componentPath = `${path.join(__dirname, '..', '..', 'element', 'shared', 'components/')}${partial}.hbs`;
+            const partialPath = `${path.join(cwd, 'shared', 'partials/')}${partial}.hbs`;
+            const componentPath = `${path.join(cwd, 'shared', 'components/')}${partial}.hbs`;
             fs.stat(partialPath, (err, stat) => {
               if (err === null && stat) {
                 callback(null, partialPath);
@@ -96,7 +98,7 @@ module.exports = {
             });
           },
           helperResolver: (helper, callback) => {
-            const helperPath = `${path.join(__dirname, '..', '..', 'element', 'shared', 'helpers/')}${helper.replace('./', '')}.js`;
+            const helperPath = `${path.join(cwd, 'shared', 'helpers/')}${helper.replace('./', '')}.js`;
             fs.stat(helperPath, (err, stat) => {
               if (err === null && stat) {
                 callback(null, helperPath);

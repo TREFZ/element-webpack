@@ -6,7 +6,6 @@
     "watch:client": "./node_modules/.bin/webpack -w --define process.env.NODE_ENV=\"'development'\"",
     "build:client": "./node_modules/.bin/webpack --define process.env.NODE_ENV=\"'development'\"",
     "build:client:prod": "./node_modules/.bin/webpack -p",
-    "foo-script": "echo 'Hello World, I am a script'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Meredith Corporation",
